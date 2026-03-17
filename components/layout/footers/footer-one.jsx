@@ -92,7 +92,7 @@ const FooterOne = () => {
 						<div className="row justify-content-between copyright__one-container-area">
 							<div className="col-xl-5 col-lg-6">
 								<div className="copyright__one-left">
-									<p>© e-intuition iT solutions 2026 | All Rights Reserved</p>
+									<p>© EIntuition 2026 | All Rights Reserved</p>
 								</div>
 							</div>
 							<div className="col-xl-5 col-lg-6">
