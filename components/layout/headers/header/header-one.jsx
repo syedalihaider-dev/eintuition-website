@@ -7,6 +7,7 @@ import logo1 from "../../../../public/assets/img/logo-1.png";
 import logo2 from "../../../../public/assets/img/logo-2.png";
 import MobileMenuPopup from '../mobile-menu/menu-area';
 import Link from 'next/link';
+import { contactInfo } from '@/components/data/contact-info';
 
 const HeaderOne = ({ variant }) => {
     const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -29,13 +30,13 @@ const HeaderOne = ({ variant }) => {
                     <div className="row">
                         <div className="col-xl-7 col-md-7">
                             <div className="top__bar-left">
-                                <Link href="tel:(629)555-0129"><i className="fas fa-phone-alt"></i>(629) 555-0129</Link>
-                                <Link href="mailto:info@example.com"><i className="fas fa-envelope"></i>info@example.com</Link>
+                                <Link href={`tel:${contactInfo.phoneLink}`}><i className="fas fa-phone-alt"></i>{contactInfo.phone}</Link>
                             </div>
                         </div>
                         <div className="col-xl-5 col-md-5">
                             <div className="top__bar-right">
-                                <Link href="https://www.google.com/maps"><i className="fas fa-map-marker-alt"></i>6391 Elgin St. Celina, 10299</Link>
+                                <Link href={`mailto:${contactInfo.email}`}><i className="fas fa-envelope"></i>{contactInfo.email}</Link>
+                                {/* <Link href="https://www.google.com/maps"><i className="fas fa-map-marker-alt"></i>6391 Elgin St. Celina, 10299</Link> */}
                             </div>
                         </div>
                     </div>

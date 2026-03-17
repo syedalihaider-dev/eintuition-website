@@ -1,41 +1,29 @@
 
 const servicesData = [
     {
-        id: 'data-analytics',
+        id: 'digital-media-analytics',
         icon: <i className="flaticon-data-scientist"></i>,
-        title: 'Data Analytics : Your Business in Every Hand',
+        title: 'Digital Media Analytics',
         des: 'Leverage critical insights & trends from your data',
     },
     {
-        id: 'cloud-computing',
+        id: 'martech',
         icon: <i className="flaticon-satellite-signal"></i>,
-        title: 'Cloud Computing : Elevating Your Business Operations',
+        title: 'MarTech',
         des: 'Optimize scalability and flexibility with cloud solutions',
     },
     {
-        id: 'network-analysis',
+        id: 'ui-ux',
         icon: <i className="flaticon-global-network"></i>,
-        title: 'Network Analysis : Insights Informed Decisions',
+        title: 'UI/UX',
         des: 'Ensure network efficiency and security with comprehensive analysis',
     },
     {
-        id: 'app-development',
+        id: 'application-development-modernization',
         icon: <i className="flaticon-mobile-app"></i>,
-        title: 'App Development : Guiding Digital Transformation',
+        title: 'Application Development & Modernization',
         des: 'Build innovative and user-friendly applications',
-    },
-    {
-        id: 'software-planning',
-        icon: <i className="flaticon-software-development"></i>,
-        title: 'Software Planning : Protecting Your Digital Assets',
-        des: 'Strategize and design robust software solutions',
-    },
-    {
-        id: 'cyber-security',
-        icon: <i className="flaticon-cyber-security"></i>,
-        title: 'Cyber Security : Your Reliable Technical Backbone',
-        des: 'Protect your digital assets with advanced security measures',
-    },
+    }
 ];
 
 export default servicesData;

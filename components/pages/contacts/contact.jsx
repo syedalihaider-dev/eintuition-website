@@ -5,6 +5,7 @@ import BreadCrumb from "../common/breadcrumb";
 import FooterOne from "@/components/layout/footers/footer-one";
 import ScrollToTop from "../common/scroll/scroll-to-top";
 import FormArea from "./form";
+import { contactInfo } from "@/components/data/contact-info";
 
 const ContactUs = () => {
     return (
@@ -35,8 +36,7 @@ const ContactUs = () => {
                                     </div>
                                     <div className="contact__two-single-info-content">
                                         <h4>Email</h4>
-                                        <span>michelle.rivera@example.com</span>
-                                        <span>willie.jennings@example.com</span>
+                                        <span>{contactInfo.email}</span>
                                     </div>
                                 </div>
                                 <div className="contact__two-single-info">
@@ -45,8 +45,7 @@ const ContactUs = () => {
                                     </div>
                                     <div className="contact__two-single-info-content">
                                         <h4>Contacts</h4>
-                                        <span>(270) 555-0117</span>
-                                        <span>(704) 555-0127</span>
+                                        <span>{contactInfo.phone}</span>
                                     </div>
                                 </div>
                                 <div className="contact__two-single-info">
@@ -59,15 +58,7 @@ const ContactUs = () => {
                                         <span>Sunday 2.Pm To 7.Pm</span>
                                     </div>
                                 </div>
-                                <div className="contact__two-single-info">
-                                    <div className="contact__two-single-info-icon">
-                                        <img src="assets/img/icon/service-4.png" alt="image" />
-                                    </div>
-                                    <div className="contact__two-single-info-content">
-                                        <h4>Location</h4>
-                                        <span>8502 Preston Rd. Inglewood, Maine 98380</span>
-                                    </div>    
-                                </div>
+
                             </div>
                         </div>
                     </div>

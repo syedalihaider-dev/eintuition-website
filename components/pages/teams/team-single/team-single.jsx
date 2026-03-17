@@ -31,13 +31,7 @@ const TeamSingleMain = ({teamDetails}) => {
                                             <h6><Link href={`tel:${teamDetails?.phone}`}>{teamDetails?.phone}</Link></h6>
                                         </div>
                                     </div>
-                                    <div className="team__details-left-info-contact-item">
-                                        <i className="far fa-map-marker-alt"></i>
-                                        <div className="team__details-left-info-contact-item-info">
-                                            <span>Office Location</span>
-                                            <h6><Link href="https://www.google.com/maps" target="_blank">PV3M+X68, United Kingdom</Link></h6>
-                                        </div>
-                                    </div>
+
                                 </div>
                                 <div className="social__icon">
                                     <ul>
