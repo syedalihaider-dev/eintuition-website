@@ -18,7 +18,7 @@ const Blog = () => {
                         <div className="col-xl-4 col-lg-6" key={id}>
                             <div className="blog__one-single-blog">
                                 <div className="blog__one-single-blog-image">
-                                <Link href={`/blog/${data.id}`}><img src={data.image.src} alt="blog" /></Link>
+                                    <Link href={`/blog/${data.id}`}><img src={data.image.src} alt="blog" /></Link>
                                 </div>
                                 <div className="blog__one-single-blog-date">
                                     <span className="date">{data.date}</span>
@@ -30,7 +30,7 @@ const Blog = () => {
                                         <span><i className="far fa-comment-dots"></i>Comments ({data.comment})</span>
                                     </div>
                                     <Link className="blog-heading" href={`/blog/${data.id}`}>{data.title}</Link>
-                                    <Link className="btn-three" href={`/blog/${data.id}`}>Read More<i className="fas fa-angle-right"></i></Link>
+                                    {/* <Link className="btn-three" href={`/blog/${data.id}`}>Read More<i className="fas fa-angle-right"></i></Link> */}
                                 </div>
                             </div>
                         </div>

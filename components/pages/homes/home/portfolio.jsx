@@ -1,13 +1,13 @@
 import portfolioData from "@/components/data/portfolio-data";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { EffectFade, Autoplay} from 'swiper/modules';
+import { EffectFade, Autoplay } from 'swiper/modules';
 import Link from "next/link";
 
 const Portfolio = () => {
     const slideControl = {
-		spaceBetween: 35,
-		slidesPerView: 3,
-		centeredSlides: true,
+        spaceBetween: 35,
+        slidesPerView: 3,
+        centeredSlides: true,
         speed: 2000,
         loop: true,
         autoplay: {
@@ -15,20 +15,20 @@ const Portfolio = () => {
             reverseDirection: false,
             disableOnInteraction: false,
         },
-		breakpoints: {
-			0: {
-				slidesPerView: 1
-			},
-			575: {
-				slidesPerView: 1
-			},
-			992: {
-				slidesPerView: 3
-			},
-			1200: {
-				slidesPerView: 3
-			},
-		}
+        breakpoints: {
+            0: {
+                slidesPerView: 1
+            },
+            575: {
+                slidesPerView: 1
+            },
+            992: {
+                slidesPerView: 3
+            },
+            1200: {
+                slidesPerView: 3
+            },
+        }
     };
     return (
         <div className="portfolio__one section-padding">
@@ -42,7 +42,7 @@ const Portfolio = () => {
                     </div>
                     <div className="col-xl-3 col-lg-4">
                         <div className="portfolio__one-content-right text-lg-end">
-                            <Link href="/portfolio/3-columns" className="btn-one">All Portfolio<i className="fas fa-arrow-right"></i></Link>
+                            {/* <Link href="/portfolio/3-columns" className="btn-one">All Portfolio<i className="fas fa-arrow-right"></i></Link> */}
                         </div>
                     </div>
                 </div>
@@ -53,7 +53,7 @@ const Portfolio = () => {
                         <SwiperSlide key={id} className="portfolio__one-single-portfolio single-portfolio">
                             <img src={data.image.src} alt="image" />
                             <div className="portfolio__one-single-portfolio-content">
-                                <h4><Link href={`/portfolio/${data.id}`}>{data.title}</Link></h4>
+                                <h4>{data.title}</h4>
                                 <span>{data.subtitle}</span>
                             </div>
                         </SwiperSlide>
