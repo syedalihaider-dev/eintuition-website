@@ -1,5 +1,6 @@
 import Social from "@/components/data/social";
 import Link from "next/link";
+import Image from "next/image";
 import logo from "../../../public/assets/img/logo-2.png";
 import ctaBg from "../../../public/assets/img/subscribe/subscribe-one-shape-1.png";
 import footerBg from "../../../public/assets/img/shape/footer-two-bg.png";
@@ -31,7 +32,7 @@ const FooterOne = () => {
 						<div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
 							<div className="footer__two-widget">
 								<div className="footer__two-widget-about">
-									<Link href="/"><img src={logo.src} alt="image" /></Link>
+									<Link href="/"><Image src={logo} alt="image" /></Link>
 									<p>Financial planners help people to gain knowledge about</p>
 									<div className="footer__two-widget-about-location">
 										<div className="footer__two-widget-about-location-item">
@@ -92,7 +93,7 @@ const FooterOne = () => {
 						<div className="row justify-content-between copyright__one-container-area">
 							<div className="col-xl-5 col-lg-6">
 								<div className="copyright__one-left">
-									<p>© EIntuition 2026 | All Rights Reserved</p>
+									<p>© eIntuition 2026 | All Rights Reserved</p>
 								</div>
 							</div>
 							<div className="col-xl-5 col-lg-6">

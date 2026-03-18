@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import ResponsiveMenu from "./responsive-menu";
 
 const MobileMenuPopup = ({ isOpen, setIsOpen, popupLogo }) => {
@@ -6,7 +7,7 @@ const MobileMenuPopup = ({ isOpen, setIsOpen, popupLogo }) => {
         <div className={`menu__bar-popup ${isOpen ? "show" : ""}`}>
             <div className="menu__bar-popup-top">
                 <div className="logo">
-                    <Link href="/"><img src={popupLogo?.src} alt='logo' /></Link>
+                    <Link href="/">{popupLogo && <Image src={popupLogo} alt='logo' />}</Link>
                 </div>
                 <div className="close" onClick={() => setIsOpen(false)}>
                     <i className="fal fa-times"></i>

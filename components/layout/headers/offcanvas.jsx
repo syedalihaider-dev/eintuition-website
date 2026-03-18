@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import Image from 'next/image';
 import logo2 from "../../../public/assets/img/logo-2.png";
 import Social from '@/components/data/social';
 import { contactInfo } from '@/components/data/contact-info';
@@ -10,7 +11,7 @@ const SideBar = ({ isOpen, setIsOpen }) => {
 				<div className="sidebar-close-btn" onClick={() => setIsOpen(false)}><i className="fal fa-times"></i></div>
 				<div className="header__area-menubar-right-sidebar-popup-logo">
 					<Link href='/'>
-						<img className='logo_one' src={logo2.src} alt="logo" />
+						<Image className='logo_one' src={logo2} alt="logo" />
 					</Link>
 				</div>
 				<p>The insurance company assumes the financial risk of covering these events in exchange for the premiums paid by the policyholder. There are many different types of insurance,</p>

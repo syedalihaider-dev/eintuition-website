@@ -7,6 +7,7 @@ import logo1 from "../../../../public/assets/img/logo-1.png";
 import logo2 from "../../../../public/assets/img/logo-2.png";
 import MobileMenuPopup from '../mobile-menu/menu-area';
 import Link from 'next/link';
+import Image from 'next/image';
 import { contactInfo } from '@/components/data/contact-info';
 
 const HeaderOne = ({ variant }) => {
@@ -47,7 +48,7 @@ const HeaderOne = ({ variant }) => {
                     <div className="header__area-menubar">
                         <div className="header__area-menubar-left">
                             <div className="header__area-menubar-left-logo">
-                                <Link href="/"><img src={logo1.src} alt="logo" /></Link>
+                                <Link href="/"><Image src={logo1} alt="logo" priority /></Link>
                             </div>
                         </div>
                         <div className="header__area-menubar-center">
