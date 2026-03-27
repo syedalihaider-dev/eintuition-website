@@ -1,5 +1,5 @@
 export const contactInfo = {
     email: "info@eintuition.co",
-    phone: "+1 (214) 899-2067",
-    phoneLink: "+12148992067" // without spaces for tel: attribute
+    phone: "(201) 500-7157",
+    phoneLink: "2015007157" // without spaces for tel: attribute
 };

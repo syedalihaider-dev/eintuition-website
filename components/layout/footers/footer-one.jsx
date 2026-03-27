@@ -33,7 +33,7 @@ const FooterOne = () => {
 							<div className="footer__two-widget">
 								<div className="footer__two-widget-about">
 									<Link href="/"><Image src={logo} alt="image" /></Link>
-									<p>Financial planners help people to gain knowledge about</p>
+									<p>We provide smart IT solutions, from web development to digital marketing, helping businesses grow and succeed in the digital world.</p>
 									<div className="footer__two-widget-about-location">
 										<div className="footer__two-widget-about-location-item">
 											<div className="footer__two-widget-about-location-item-icon">
