@@ -4,8 +4,8 @@ import Link from "next/link";
 
 const BannerOne = () => {
     return (
-            <>
-            <div className="banner__one"> 
+        <>
+            <div className="banner__one">
                 <div className="banner-shape">
                     <div className="shape banner-shape-1"></div>
                     <div className="shape banner-shape-2"></div>
@@ -20,8 +20,8 @@ const BannerOne = () => {
                         <div className="col-xl-6 col-lg-6">
                             <div className="banner__one-content">
                                 <span className="subtitle-one">Digital Growth</span>
-                                <h2>Blueprints for Digital <span>Excellence</span></h2>
-                                <p>Our team about exploring new possibilities and embracing emerging trends to deliver transformative IT solutions</p>
+                                <h2>Transforming Businesses Through AI, <span> Digital Engineering & Intelligent Solutions</span></h2>
+                                <p>eIntuition partners with organizations to design, build, and scale modern digital solutions—combining software engineering, AI, data, and marketing technology to deliver measurable business impact.</p>
                                 <Link href="/services" className="btn-two">Find Solutions
                                     <i className="fas fa-arrow-right"></i>
                                 </Link>

@@ -11,44 +11,45 @@ import Count from "../../common/count";
 const About = () => {
     return (
         <>
-        <div className="brand__area pt-115">
-            <div className="container">
-                <div className="row">
-                    <div className="col-xl-12">
-                        <div className="text__slider">
-                            <div className="text-slide">
-                                <div className="sliders scroll">
-                                    <div className="brand__area-item">
-                                        <img src={brand1.src} alt="image" />
+            <div className="brand__area pt-115">
+                <div className="container">
+                    <div className="row">
+                        <div className="col-xl-12">
+                            <div className="text__slider">
+                                <div className="text-slide">
+                                    <div className="sliders scroll">
+                                        <div className="brand__area-item">
+                                            <img src={brand1.src} alt="image" />
+                                        </div>
+                                        <div className="brand__area-item">
+                                            <img src={brand2.src} alt="image" />
+                                        </div>
+                                        <div className="brand__area-item">
+                                            <img src={brand3.src} alt="image" />
+                                        </div>
+                                        <div className="brand__area-item">
+                                            <img src={brand4.src} alt="image" />
+                                        </div>
+                                        <div className="brand__area-item">
+                                            <img src={brand5.src} alt="image" />
+                                        </div>
                                     </div>
-                                    <div className="brand__area-item">
-                                        <img src={brand2.src} alt="image" />
-                                    </div>
-                                    <div className="brand__area-item">
-                                        <img src={brand3.src} alt="image" />
-                                    </div>
-                                    <div className="brand__area-item">
-                                        <img src={brand4.src} alt="image" />
-                                    </div>
-                                    <div className="brand__area-item">
-                                        <img src={brand5.src} alt="image" />
-                                    </div>
-                                </div>
-                                <div className="sliders scroll">
-                                    <div className="brand__area-item">
-                                        <img src={brand1.src} alt="image" />
-                                    </div>
-                                    <div className="brand__area-item">
-                                        <img src={brand2.src} alt="image" />
-                                    </div>
-                                    <div className="brand__area-item">
-                                        <img src={brand3.src} alt="image" />
-                                    </div>
-                                    <div className="brand__area-item">
-                                        <img src={brand4.src} alt="image" />
-                                    </div>
-                                    <div className="brand__area-item">
-                                        <img src={brand5.src} alt="image" />
+                                    <div className="sliders scroll">
+                                        <div className="brand__area-item">
+                                            <img src={brand1.src} alt="image" />
+                                        </div>
+                                        <div className="brand__area-item">
+                                            <img src={brand2.src} alt="image" />
+                                        </div>
+                                        <div className="brand__area-item">
+                                            <img src={brand3.src} alt="image" />
+                                        </div>
+                                        <div className="brand__area-item">
+                                            <img src={brand4.src} alt="image" />
+                                        </div>
+                                        <div className="brand__area-item">
+                                            <img src={brand5.src} alt="image" />
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -56,57 +57,61 @@ const About = () => {
                     </div>
                 </div>
             </div>
-        </div>
-        <div className="about__one section-padding">
-            <div className="container">
-                <div className="row align-items-center flex-wrap-reverse gy-4">
-                    <div className="col-xl-6 col-lg-5">
-                        <div className="about__one-image">
-                            <div className="experience-bar animate-y-axis-slider">
-                                <i className="flaticon-consultant"></i>
-                                <div className="experience-bar-right">
-                                    <div className="experience-bar-counter">
-                                        <h4 className="counter"><Count number={25}/></h4>
-                                        <span>+</span>
+            <div className="about__one section-padding">
+                <div className="container">
+                    <div className="row align-items-center flex-wrap-reverse gy-4">
+                        <div className="col-xl-6 col-lg-5">
+                            <div className="about__one-image">
+                                <div className="experience-bar animate-y-axis-slider">
+                                    <i className="flaticon-consultant"></i>
+                                    <div className="experience-bar-right">
+                                        <div className="experience-bar-counter">
+                                            <h4 className="counter"><Count number={25} /></h4>
+                                            <span>+</span>
+                                        </div>
+                                        <span>Years Experience</span>
                                     </div>
-                                    <span>Years Experience</span>
                                 </div>
-                            </div>
-                            <div className="about__one-image-wrapper">
-                                <img src={about1.src} alt="image" className="image-1" />
-                                <img src={about2.src} alt="image" className="image-2" />
+                                <div className="about__one-image-wrapper">
+                                    <img src={about1.src} alt="image" className="image-1" />
+                                    <img src={about2.src} alt="image" className="image-2" />
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div className="col-xl-6 col-lg-7 col-md-9">
-                        <div className="about__one-content">
-                            <span className="subtitle-one">About us</span>
-                            <h2>Transform Business to Technology</h2>
-                            <p>IT Technology is a broad category encompassing all aspec information technology and the application of technology in various industries. It includes areas such as software development</p>
-                            <div className="about__one-content-service">
-                                <div className="service">
-                                    <i className="far fa-check-circle"></i>
-                                    <span>Data Management Experts</span>
+                        <div className="col-xl-6 col-lg-7 col-md-9">
+                            <div className="about__one-content">
+                                <span className="subtitle-one">About us</span>
+                                <h2>Who We Are</h2>
+                                <p>
+                                    eIntuition is a digital consulting and engineering firm focused on helping organizations navigate the complexities of modern technology and business transformation.
+                                    <br /><br />
+                                    We were founded with a clear purpose: to bridge the gap between strategic vision and execution. Many organizations struggle not because they lack ideas, but because they lack the ability to execute those ideas effectively in a rapidly changing digital environment. eIntuition was created to solve that challenge.
+
+                                </p>
+                                <div className="about__one-content-service">
+                                    <div className="service">
+                                        <i className="far fa-check-circle"></i>
+                                        <span>Data Management Experts</span>
+                                    </div>
+                                    <div className="service">
+                                        <i className="far fa-check-circle"></i>
+                                        <span>Mobile App Developments</span>
+                                    </div>
+                                    <div className="service">
+                                        <i className="far fa-check-circle"></i>
+                                        <span>IT Infrastructure Solutions</span>
+                                    </div>
+                                    <div className="service">
+                                        <i className="far fa-check-circle"></i>
+                                        <span>Data Analytics Consulting</span>
+                                    </div>
                                 </div>
-                                <div className="service">
-                                    <i className="far fa-check-circle"></i>
-                                    <span>Mobile App Developments</span>
-                                </div>
-                                <div className="service">
-                                    <i className="far fa-check-circle"></i>
-                                    <span>IT Infrastructure Solutions</span>
-                                </div>
-                                <div className="service">
-                                    <i className="far fa-check-circle"></i>
-                                    <span>Data Analytics Consulting</span>
-                                </div>
+                                <Link href="/about" className="btn-one">Discover More<i className="fas fa-arrow-right"></i></Link>
                             </div>
-                            <Link href="/about" className="btn-one">Discover More<i className="fas fa-arrow-right"></i></Link>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         </>
     );
 };

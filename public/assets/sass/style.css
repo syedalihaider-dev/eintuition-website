@@ -4678,16 +4678,23 @@ Responsive Menu Css
 }
 .about__one-content-service {
   display: flex;
-  justify-content: space-between;
+  justify-content: start;
   align-items: center;
   flex-wrap: wrap;
+  gap: 10px;
   margin-bottom: 30px;
 }
 .about__one-content-service .service {
+  width: 49%;
   margin-bottom: 20px;
 }
+
+.about__one-content-service .service:last-child{
+  width: 100%;
+}
+
 .about__one-content-service .service span {
-  font-size: 18px;
+  font-size: 17px;
   color: var(--color-2);
 }
 .about__one-content-service .service i {
@@ -6752,9 +6759,9 @@ Responsive Menu Css
 }
 .why-choose-us__one-title p {
   color: var(--color-2);
-  margin-bottom: 35px;
+  margin-bottom: 25px;
   text-transform: none;
-  width: 93%;
+  width: 100%;
 }
 .why-choose-us__one-quality-single {
   display: flex;

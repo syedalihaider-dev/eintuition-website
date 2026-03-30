@@ -10,7 +10,7 @@ import { contactInfo } from "@/components/data/contact-info";
 const ContactUs = () => {
     return (
         <>
-            <SEO pageTitle="Contact Us" />        
+            <SEO pageTitle="Contact Us" />
             <HeaderOne />
             <BreadCrumb title="Contact Us" innerTitle="Contact Us" />
             <div className="contact__two section-padding">
@@ -20,8 +20,14 @@ const ContactUs = () => {
                             <div className="contact__two-content">
                                 <div className="contact__two-title">
                                     <span className="subtitle-one">Contact us</span>
-                                    <h2>Do you have any question? </h2>
-                                    <p>For your car we will do everything  advice, repairs and maintenance. We are the some preferred choice by many car owners because</p>
+                                    <h2>Let’s Work Together</h2>
+                                    <p>
+                                        At eIntuition, we are always looking to partner with organizations that are ready to innovate, transform, and grow.
+                                        <br /><br />
+                                        Whether you are building a new digital product, modernizing your technology landscape, or exploring the potential of AI and data, our team is here to help. <br /><br />
+                                        Reach out to us to start a conversation about how we can support your business goals.
+
+                                    </p>
                                 </div>
                                 <div className="contact__two-form">
                                     <FormArea />
@@ -44,7 +50,7 @@ const ContactUs = () => {
                                         <img src="assets/img/icon//service-2.png" alt="image" />
                                     </div>
                                     <div className="contact__two-single-info-content">
-                                        <h4>Contacts</h4>
+                                        <h4>Call to Action</h4>
                                         <span>{contactInfo.phone}</span>
                                     </div>
                                 </div>
@@ -53,9 +59,8 @@ const ContactUs = () => {
                                         <img src="assets/img/icon//service-3.png" alt="image" />
                                     </div>
                                     <div className="contact__two-single-info-content">
-                                        <h4>Date</h4>
-                                        <span>Saturday 10.Am To 2.Pm</span>
-                                        <span>Sunday 2.Pm To 7.Pm</span>
+                                        <h4>Location</h4>
+                                        <span>Texas, USA</span>
                                     </div>
                                 </div>
 
