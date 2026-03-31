@@ -50,14 +50,16 @@ const FooterOne = () => {
 								</div>
 							</div>
 						</div>
-						<div className="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-							<div className="footer__two-widget ml-85">
+						<div className="col-xl-2 col-lg-4 col-md-6 col-sm-6">
+							<div className="footer__two-widget">
 								<h4>Quick Link</h4>
 								<div className="footer__two-widget-solution">
 									<ul>
 										<li><Link href="/"><i className="far fa-chevron-double-right"></i>Home</Link></li>
 										<li><Link href="/about"><i className="far fa-chevron-double-right"></i>About Us</Link></li>
 										<li><Link href="/services"><i className="far fa-chevron-double-right"></i>Services</Link></li>
+										<li><Link href="/industries"><i className="far fa-chevron-double-right"></i>Industries</Link></li>
+										<li><Link href="/case-studies"><i className="far fa-chevron-double-right"></i>Case Studies</Link></li>
 										<li><Link href="/contact"><i className="far fa-chevron-double-right"></i>Contact</Link></li>
 									</ul>
 								</div>
@@ -68,11 +70,9 @@ const FooterOne = () => {
 								<h4>Our Services</h4>
 								<div className="footer__two-widget-solution">
 									<ul>
-										{servicesData.slice(0, 4).map((data, id) => {
-											return (
-												<li key={id}><Link href={`/services/${data.id}`}><i className="far fa-chevron-double-right"></i>{data.title}</Link></li>
-											);
-										})}
+										{servicesData.slice(0, 6).map((data, id) => (
+											<li key={id}><Link href={`/services/${data.id}`}><i className="far fa-chevron-double-right"></i>{data.title.replace(/<[^>]+>/g, ' ')}</Link></li>
+										))}
 									</ul>
 								</div>
 							</div>
@@ -100,7 +100,6 @@ const FooterOne = () => {
 							</div>
 							<div className="col-xl-5 col-lg-6">
 								<div className="copyright__one-right">
-									{/* <Link href="/about">Privacy Policy</Link> */}
 									<Link href="/contact">Contact Us</Link>
 								</div>
 							</div>

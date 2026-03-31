@@ -14,7 +14,7 @@ const ServicesMain = () => {
                                         {data.icon}
                                     </div>
                                     <div className="services__two-single-service-content">
-                                        <h4>{data.title}</h4>
+                                        <h4 dangerouslySetInnerHTML={{ __html: data.cardTitle || data.title }}></h4>
                                         <Link href={`/services/${data.id}`} className="btn-three">Read More<i className="fas fa-chevron-right"></i></Link>
                                     </div>
                                 </div>

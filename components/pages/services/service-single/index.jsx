@@ -7,14 +7,12 @@ import FooterOne from "@/components/layout/footers/footer-one";
 import ScrollToTop from "../../common/scroll/scroll-to-top";
 
 const ServicesSingle = ({serviceDetails}) => {
-    const words = serviceDetails.title.split(' ');
-    const firstAndSecondWord = words.slice(0, 2).join(' ');
     return (
         <>
-            <SEO pageTitle={serviceDetails?.title} />            
+            <SEO pageTitle={serviceDetails?.title.replace(/<[^>]+>/g, ' ')} />            
             <HeaderOne />
-            <BreadCrumb title={firstAndSecondWord} innerTitle={serviceDetails?.title} />
-            <ServicesSingleMain firstAndSecondWord={firstAndSecondWord}/>
+            <BreadCrumb title={serviceDetails?.title.replace(/<[^>]+>/g, ' ')} innerTitle={serviceDetails?.title.replace(/<[^>]+>/g, ' ')} parentTitle="Our Services" parentLink="/services" />
+            <ServicesSingleMain fullTitle={serviceDetails?.title.replace(/<[^>]+>/g, ' ')} serviceDetails={serviceDetails}/>
             <FooterOne />
             <ScrollToTop />
         </>

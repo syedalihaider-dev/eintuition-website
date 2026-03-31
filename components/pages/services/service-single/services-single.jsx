@@ -2,7 +2,7 @@ import ServicesDetails from '../../../../public/assets/img/service/service-detai
 import image1 from '../../../../public/assets/img/icon/service-details-icon-2.png';
 import image2 from '../../../../public/assets/img/icon/service-details-icon.png';
 
-const ServicesSingleMain = ({firstAndSecondWord}) => {
+const ServicesSingleMain = ({fullTitle, serviceDetails}) => {
     return (
         <>
         <div className="service__details section-padding">
@@ -18,32 +18,50 @@ const ServicesSingleMain = ({firstAndSecondWord}) => {
                             </div>
                         </div>
                         <div className="service__details-content">
-                            <h2>Reach New Heights with {firstAndSecondWord}</h2>
-                            <p>Web designing in a powerful way of just not an only professions, however, in a passion for our Company. We have to a tendency to believe the idea that smart looking of any websitet in on visitors.Web designing in a powerful way of just not an only profession Web designing in a powerful way of just not an only passion for our Company. We have to a tendency to believe the idea that</p>
+                            <h2>Reach New Heights with {fullTitle}</h2>
+                            {Array.isArray(serviceDetails?.mainDescription) 
+                                ? serviceDetails.mainDescription.map((desc, idx) => <p key={idx}>{desc}</p>)
+                                : <p>{serviceDetails?.mainDescription}</p>
+                            }
     
-                            <h3 className="sub-heading">Transform Your Brand's Digital Future</h3>
-                            <p>Web designing in a powerful way of just not an only professions, however, in a passion for our Company. We have to a tendency to believe the idea that smart looking of any websitet in on visitors.Web designing in a powerful way of just not an only profession Web designing in a powerful way of just not an only Web designing in a powerful way of just not an only professions, however, in a passion for our Company. We have to a tendency to believe the idea that smart looking of any websitet in on visitors.Web designing in a powerful way of just not an only profession</p>
+                            <h3 className="sub-heading">{serviceDetails?.subHeading || "Transform Your Brand's Digital Future"}</h3>
+                            {Array.isArray(serviceDetails?.subDescription) 
+                                ? serviceDetails.subDescription.map((desc, idx) => <p key={idx}>{desc}</p>)
+                                : <p>{serviceDetails?.subDescription}</p>
+                            }
     
                             <div className="service__details-content-box">
-                                <div className="service__details-content-box-single">
-                                    <h4>Elevating Businesses through Edge </h4>
-                                    <p>Web designing in a powerful way of just not an only professions, however, in a passion for our Company. We have to a tendency to believe the idea that smart looking of any website</p>
-                                    <ul className="service-qualities">
-                                        <li>IT Support</li>
-                                        <li>Software Development</li>
-                                        <li>Cloud Computing</li>
-                                        <li>IData Analysis</li>
-                                    </ul>
-                                </div>
-                                <div className="service__details-content-box-single">
-                                    <div className="icon">
-                                        <img src={image2.src} alt="image" />
+                                {(serviceDetails?.box1Heading || serviceDetails?.box1Description || serviceDetails?.box1List) && (
+                                    <div className="service__details-content-box-single">
+                                        {serviceDetails?.box1Heading && <h4>{serviceDetails.box1Heading}</h4>}
+                                        {serviceDetails?.box1Description && <p>{serviceDetails.box1Description}</p>}
+                                        {serviceDetails?.box1List && (
+                                            <ul className="service-qualities">
+                                                {serviceDetails.box1List.map((item, index) => (
+                                                    <li key={index}>{item}</li>
+                                                ))}
+                                            </ul>
+                                        )}
                                     </div>
-                                    <h4 className="mb-4">Elevating Businesses through Edge </h4>
-                                    <p className="m-0">Web designing in a powerful way of just not an only professions, however, in a passion for our Company. We have to a tendency to believe the idea that smart looking of any website</p>
-                                </div>
+                                )}
+                                {(serviceDetails?.box2Heading || serviceDetails?.box2Description || serviceDetails?.box2List) && (
+                                    <div className="service__details-content-box-single">
+                                        <div className="icon">
+                                            <img src={image2.src} alt="image" />
+                                        </div>
+                                        {serviceDetails?.box2Heading && <h4 className="mb-4">{serviceDetails.box2Heading}</h4>}
+                                        {serviceDetails?.box2Description && <p className="m-0">{serviceDetails.box2Description}</p>}
+                                        {serviceDetails?.box2List && (
+                                            <ul className="service-qualities mt-3">
+                                                {serviceDetails.box2List.map((item, index) => (
+                                                    <li key={index}>{item}</li>
+                                                ))}
+                                            </ul>
+                                        )}
+                                    </div>
+                                )}
                             </div>
-                            <p>Web designing in a powerful way of just not an only professions, however, in a passion for our Company. We have to a tendency to believe the idea that smart looking of any websitet in on visitors.Web designing in a powerful way of just not an only profession Web designing in a powerful way of just not an only Web designing in a powerful way of just not an only professions, however, in a passion for our Company. We have to a tendency to believe the idea that smart looking of any websitet in on visitors.Web designing in a powerful way of just not an only profession</p>
+                            {serviceDetails?.finalDescription && <p>{serviceDetails.finalDescription}</p>}
                         </div>
                     </div>
                 </div>

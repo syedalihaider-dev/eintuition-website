@@ -9,6 +9,7 @@ import Link from "next/link";
 import Count from "../common/count";
 import WorkArea from "../homes/home/work";
 import Testimonial from "../homes/home/testimonial";
+import Approach from "./approach";
 
 
 const AboutMain = () => {
@@ -114,6 +115,7 @@ const AboutMain = () => {
                     </div>
                 </div>
             </div>
+            <Approach />
             <WorkArea />
             <Testimonial />
         </>

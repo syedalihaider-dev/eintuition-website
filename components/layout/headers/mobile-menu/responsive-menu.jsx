@@ -1,6 +1,7 @@
 "use client"
 import Link from 'next/link';
 import React, { useState } from 'react';
+import servicesData from '../../../data/services-data';
 
 const ResponsiveMenu = () => {
     const [activeMenu, setActiveMenu] = useState(null);
@@ -23,12 +24,17 @@ const ResponsiveMenu = () => {
                 </li>
                 <li className='menu-item-has-children'><Link href='/services'>Services</Link>
                     <ul className='sub-menu' style={activeSubMenu("services")}>
-                        <li><Link href="/services/digital-media-analytics">Digital Media Analytics</Link></li>
-                        <li><Link href="/services/martech">MarTech</Link></li>
-                        <li><Link href="/services/ui-ux">UI/UX</Link></li>
-                        <li><Link href="/services/application-development-modernization">Application Development & Modernization</Link></li>
+                        {servicesData.map((item, index) => (
+                            <li key={index}><Link href={`/services/${item.id}`}>{item.title.replace(/<[^>]+>/g, ' ')}</Link></li>
+                        ))}
                     </ul>
                     <a className={`mean-expand ${activeIcon("services")}`} onClick={() => active("services")}></a>
+                </li>
+                <li>
+                    <Link href="/industries">Industries</Link>
+                </li>
+                <li>
+                    <Link href="/case-studies">Case Studies</Link>
                 </li>
                 <li><Link href="/contact">Contact</Link></li>   
             </ul>  
