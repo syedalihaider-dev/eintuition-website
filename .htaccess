@@ -1,0 +1,13 @@
+# Serve Next.js via PM2 — not a static file listing.
+# Change 3001 if your app uses a different PORT (pm2 logs / cPanel Node app).
+
+Options -Indexes
+DirectoryIndex disabled
+
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+
+  # Keep API / assets / pages going to the Node process
+  RewriteCond %{REQUEST_URI} !^/\.well-known
+  RewriteRule ^ http://127.0.0.1:3001%{REQUEST_URI} [P,L]
+</IfModule>

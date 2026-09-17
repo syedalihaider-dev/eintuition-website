@@ -1,0 +1,548 @@
+{
+  "info": {
+    "_postman_id": "eintuition-backend-collection",
+    "name": "eIntuition Backend",
+    "description": "API collection for eIntuition Next.js backend (packages, Stripe, contact, quotes, admin).\n\nHow to use:\n1. Import this collection + the environment file.\n2. Select environment \"eIntuition Local\".\n3. Set `baseUrl` (http://localhost:3001 if 3000 is busy).\n4. Run **Admin Auth > Login** first — token is saved automatically.\n5. Run other admin requests.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:3000" },
+    { "key": "adminToken", "value": "" },
+    { "key": "packageId", "value": "" },
+    { "key": "packageSlug", "value": "premium" },
+    { "key": "queryId", "value": "" },
+    { "key": "quoteId", "value": "" },
+    { "key": "paymentId", "value": "" }
+  ],
+  "item": [
+    {
+      "name": "Public",
+      "item": [
+        {
+          "name": "Health Check",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/health",
+            "description": "Checks API + database connectivity."
+          }
+        },
+        {
+          "name": "List Active Packages (Monthly)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.length) {",
+                  "    pm.collectionVariables.set('packageId', json.data[0].id);",
+                  "    pm.collectionVariables.set('packageSlug', json.data[0].slug);",
+                  "  }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/packages?billingPeriod=MONTHLY",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "packages"],
+              "query": [
+                { "key": "billingPeriod", "value": "MONTHLY", "description": "MONTHLY | YEARLY (omit for all)" }
+              ]
+            },
+            "description": "Returns MONTHLY packages for the pricing toggle. Saves first package id/slug."
+          }
+        },
+        {
+          "name": "List Active Packages (Yearly)",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.length) {",
+                  "    pm.collectionVariables.set('packageId', json.data[0].id);",
+                  "    pm.collectionVariables.set('packageSlug', json.data[0].slug);",
+                  "  }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/api/packages?billingPeriod=YEARLY",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "packages"],
+              "query": [
+                { "key": "billingPeriod", "value": "YEARLY" }
+              ]
+            },
+            "description": "Returns YEARLY packages for the pricing toggle. Each yearly plan is its own DB record."
+          }
+        },
+        {
+          "name": "Get Package by ID or Slug",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": "{{baseUrl}}/api/packages/{{packageSlug}}",
+            "description": "Fetch one package by id or slug."
+          }
+        },
+        {
+          "name": "Create Contact Query",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201 || pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.id) pm.collectionVariables.set('queryId', json.data.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Jane Doe\",\n  \"email\": \"jane@example.com\",\n  \"subject\": \"Partnership inquiry\",\n  \"message\": \"I would like to discuss a project with eIntuition.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/contact",
+            "description": "Public Contact Us form submission."
+          }
+        },
+        {
+          "name": "Create Quote Request",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201 || pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.id) pm.collectionVariables.set('quoteId', json.data.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstName\": \"John\",\n  \"lastName\": \"Smith\",\n  \"email\": \"john@acme.com\",\n  \"phone\": \"+1 201 555 0100\",\n  \"company\": \"Acme Inc\",\n  \"website\": \"https://acme.com\",\n  \"services\": [\"Web Design\", \"Optimization (SEO)\", \"Maintenance\"],\n  \"message\": \"Looking for a quote for a new marketing site and ongoing support.\"\n}"
+            },
+            "url": "{{baseUrl}}/api/quotes",
+            "description": "Public Request Quote form submission (separate from contact)."
+          }
+        },
+        {
+          "name": "Create Checkout Session",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.paymentId) pm.collectionVariables.set('paymentId', json.data.paymentId);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"packageId\": \"{{packageId}}\",\n  \"customerEmail\": \"buyer@example.com\",\n  \"customerName\": \"Buyer Name\"\n}"
+            },
+            "url": "{{baseUrl}}/api/checkout",
+            "description": "Creates Stripe Checkout for the selected package. Period/price come from that package record — pass only packageId (no billingPeriod). Run List Monthly or Yearly packages first."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Auth",
+      "item": [
+        {
+          "name": "Login",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "pm.test('Login succeeded', function () {",
+                  "  pm.response.to.have.status(200);",
+                  "});",
+                  "const json = pm.response.json();",
+                  "if (json.data && json.data.token) {",
+                  "  pm.collectionVariables.set('adminToken', json.data.token);",
+                  "  pm.environment.set('adminToken', json.data.token);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"{{adminEmail}}\",\n  \"password\": \"{{adminPassword}}\"\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/auth/login",
+            "description": "Logs in admin and stores JWT in adminToken."
+          }
+        },
+        {
+          "name": "Me",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": "{{baseUrl}}/api/admin/auth/me"
+          }
+        },
+        {
+          "name": "Logout",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": "{{baseUrl}}/api/admin/auth/logout",
+            "description": "Clears admin auth cookie."
+          }
+        },
+        {
+          "name": "Change Password",
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"currentPassword\": \"{{adminPassword}}\",\n  \"newPassword\": \"Admin@123\"\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/auth/change-password",
+            "description": "Updates admin password. Keep newPassword in sync with environment after changing."
+          }
+        },
+        {
+          "name": "Update Email",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"email\": \"eintuitionadmin@yopmail.com\"\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/auth/update-email",
+            "description": "Updates admin email (use when client provides real email)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Dashboard",
+      "item": [
+        {
+          "name": "Get Dashboard Stats",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": "{{baseUrl}}/api/admin/dashboard",
+            "description": "Earnings (successful Stripe payments only) + query/quote counts."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Packages",
+      "item": [
+        {
+          "name": "List All Packages",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.length) {",
+                  "    pm.collectionVariables.set('packageId', json.data[0].id);",
+                  "  }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": "{{baseUrl}}/api/admin/packages"
+          }
+        },
+        {
+          "name": "Get Package by ID",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": "{{baseUrl}}/api/admin/packages/{{packageId}}"
+          }
+        },
+        {
+          "name": "Create Package",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 201 || pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.id) pm.collectionVariables.set('packageId', json.data.id);",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "POST",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"name\": \"Starter\",\n  \"slug\": \"starter-monthly\",\n  \"description\": \"Entry-level package for small teams\",\n  \"features\": [\"Feature A\", \"Feature B\", \"Feature C\"],\n  \"billingPeriod\": \"MONTHLY\",\n  \"priceCents\": 1900,\n  \"currency\": \"usd\",\n  \"isFeatured\": false,\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/packages",
+            "description": "Prices are in cents (1900 = $19.00)."
+          }
+        },
+        {
+          "name": "Update Package",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"description\": \"Updated description\",\n  \"priceCents\": 2900,\n  \"isFeatured\": true,\n  \"isActive\": true\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/packages/{{packageId}}"
+          }
+        },
+        {
+          "name": "Deactivate Package (soft delete)",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": "{{baseUrl}}/api/admin/packages/{{packageId}}",
+            "description": "Sets isActive=false (keeps payment history)."
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Payments",
+      "item": [
+        {
+          "name": "List Payment Logs",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/payments?limit=50&offset=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "payments"],
+              "query": [
+                { "key": "status", "value": "SUCCEEDED", "disabled": true },
+                { "key": "limit", "value": "50" },
+                { "key": "offset", "value": "0" }
+              ]
+            },
+            "description": "Optional status: PENDING | SUCCEEDED | FAILED | REFUNDED"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Queries (Contact)",
+      "item": [
+        {
+          "name": "List Contact Queries",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.queries && json.data.queries.length) {",
+                  "    pm.collectionVariables.set('queryId', json.data.queries[0].id);",
+                  "  }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/queries?limit=50&offset=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "queries"],
+              "query": [
+                { "key": "status", "value": "NEW", "disabled": true },
+                { "key": "limit", "value": "50" },
+                { "key": "offset", "value": "0" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Contact Query",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": "{{baseUrl}}/api/admin/queries/{{queryId}}"
+          }
+        },
+        {
+          "name": "Update Contact Query Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"READ\"\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/queries/{{queryId}}",
+            "description": "status: NEW | READ | CLOSED"
+          }
+        }
+      ]
+    },
+    {
+      "name": "Admin Quotes",
+      "item": [
+        {
+          "name": "List Quote Requests",
+          "event": [
+            {
+              "listen": "test",
+              "script": {
+                "type": "text/javascript",
+                "exec": [
+                  "if (pm.response.code === 200) {",
+                  "  const json = pm.response.json();",
+                  "  if (json.data && json.data.quotes && json.data.quotes.length) {",
+                  "    pm.collectionVariables.set('quoteId', json.data.quotes[0].id);",
+                  "  }",
+                  "}"
+                ]
+              }
+            }
+          ],
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/api/admin/quotes?limit=50&offset=0",
+              "host": ["{{baseUrl}}"],
+              "path": ["api", "admin", "quotes"],
+              "query": [
+                { "key": "status", "value": "NEW", "disabled": true },
+                { "key": "limit", "value": "50" },
+                { "key": "offset", "value": "0" }
+              ]
+            }
+          }
+        },
+        {
+          "name": "Get Quote Request",
+          "request": {
+            "method": "GET",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" }
+            ],
+            "url": "{{baseUrl}}/api/admin/quotes/{{quoteId}}"
+          }
+        },
+        {
+          "name": "Update Quote Status",
+          "request": {
+            "method": "PATCH",
+            "header": [
+              { "key": "Authorization", "value": "Bearer {{adminToken}}" },
+              { "key": "Content-Type", "value": "application/json" }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"status\": \"READ\"\n}"
+            },
+            "url": "{{baseUrl}}/api/admin/quotes/{{quoteId}}",
+            "description": "status: NEW | READ | CLOSED"
+          }
+        }
+      ]
+    }
+  ]
+}

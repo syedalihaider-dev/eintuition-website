@@ -1,0 +1,107 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum BillingPeriod {
+  MONTHLY
+  YEARLY
+}
+
+enum PaymentStatus {
+  PENDING
+  SUCCEEDED
+  FAILED
+  REFUNDED
+}
+
+enum InquiryStatus {
+  NEW
+  READ
+  CLOSED
+}
+
+model Admin {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+}
+
+model Package {
+  id            String        @id @default(cuid())
+  name          String
+  slug          String        @unique
+  description   String
+  features      String[]
+  billingPeriod BillingPeriod
+  priceCents    Int
+  currency      String        @default("usd")
+  isFeatured    Boolean       @default(false)
+  isActive      Boolean       @default(true)
+  createdAt     DateTime      @default(now())
+  updatedAt     DateTime      @updatedAt
+  payments      Payment[]
+
+  @@index([billingPeriod, isActive])
+  @@index([isFeatured])
+}
+
+model Payment {
+  id                      String          @id @default(cuid())
+  packageId               String?
+  package                 Package?        @relation(fields: [packageId], references: [id])
+  billingPeriod           BillingPeriod?
+  amountCents             Int
+  currency                String          @default("usd")
+  note                    String?
+  status                  PaymentStatus   @default(PENDING)
+  authorizeInvoiceNumber  String?         @unique
+  authorizeTransId        String?         @unique
+  authorizeSubscriptionId String?
+  customerEmail           String?
+  customerName            String?
+  createdAt               DateTime        @default(now())
+  updatedAt               DateTime        @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+  @@index([authorizeSubscriptionId])
+}
+
+model ContactQuery {
+  id        String        @id @default(cuid())
+  name      String
+  email     String
+  subject   String?
+  message   String
+  status    InquiryStatus @default(NEW)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}
+
+model QuoteRequest {
+  id        String        @id @default(cuid())
+  firstName String
+  lastName  String
+  email     String
+  phone     String
+  company   String
+  website   String
+  services  String[]
+  message   String
+  status    InquiryStatus @default(NEW)
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+
+  @@index([status])
+  @@index([createdAt])
+}

@@ -3,18 +3,38 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
+    "dev": "next dev --experimental-https --experimental-https-key ./certificates/localhost-key.pem --experimental-https-cert ./certificates/localhost.pem",
+    "dev:http": "next dev",
+    "certs:local": "node scripts/generate-local-certs.js",
+    "build": "prisma generate && next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "postinstall": "prisma generate",
+    "db:generate": "prisma generate",
+    "db:push": "prisma db push",
+    "db:migrate": "prisma migrate dev",
+    "db:seed": "node prisma/seed.js",
+    "db:setup": "prisma db push && node prisma/seed.js",
+    "pm2:start": "pm2 start ecosystem.config.cjs",
+    "pm2:reload": "pm2 reload eintuition",
+    "pm2:stop": "pm2 stop eintuition",
+    "pm2:logs": "pm2 logs eintuition"
   },
   "dependencies": {
+    "@prisma/client": "5.22.0",
+    "bcryptjs": "^2.4.3",
     "bootstrap": "^5.3.3",
+    "jose": "^5.9.6",
     "next": "14.2.5",
+    "prisma": "5.22.0",
     "react": "^18",
     "react-countup": "^6.5.3",
     "react-dom": "^18",
     "react-modal-video": "^2.0.2",
-    "swiper": "^11.1.5"
+    "swiper": "^11.1.5",
+    "zod": "^3.24.1"
+  },
+  "prisma": {
+    "seed": "node prisma/seed.js"
   }
 }

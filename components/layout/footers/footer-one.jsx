@@ -101,6 +101,19 @@ const FooterOne = () => {
 							<div className="col-xl-5 col-lg-6">
 								<div className="copyright__one-right">
 									<Link href="/contact">Contact Us</Link>
+									{" · "}
+									<Link
+										href="/pay"
+										aria-label="Custom payment"
+										style={{
+											opacity: 0.35,
+											fontSize: 12,
+											textDecoration: "none",
+											letterSpacing: "0.02em",
+										}}
+									>
+										Pay
+									</Link>
 								</div>
 							</div>
 						</div>

@@ -1,20 +1,24 @@
-"use client"
-import { useEffect } from 'react';
+import Script from "next/script";
+import ClientBoot from "./client-boot";
 import "./globals.css";
 
-export default function RootLayout({ children }) {
-    useEffect(() => {
-        require('bootstrap/dist/js/bootstrap.min.js');
-    }, []);
+const acceptSrc =
+  (process.env.NEXT_PUBLIC_AUTHORIZE_ENVIRONMENT || "sandbox").toLowerCase() ===
+  "production"
+    ? "https://js.authorize.net/v1/Accept.js"
+    : "https://jstest.authorize.net/v1/Accept.js";
 
-    return (
-        <html lang="en">
-            <head>
-                <link rel='icon' type='image/png' href='../favicon.ico' />
-            </head>
-            <body>
-                {children}
-            </body>
-        </html>
-    );
+export default function RootLayout({ children }) {
+  return (
+    <html lang="en">
+      <head>
+        <link rel="icon" type="image/png" href="/favicon.ico" />
+      </head>
+      <body>
+        {/* Must be beforeInteractive — dynamic script injection breaks Accept.js */}
+        <Script src={acceptSrc} strategy="beforeInteractive" />
+        <ClientBoot>{children}</ClientBoot>
+      </body>
+    </html>
+  );
 }
