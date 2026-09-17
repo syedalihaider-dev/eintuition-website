@@ -256,7 +256,7 @@
   align-items: center;
   gap: 8px;
 }
-.admin-btn--primary { background: #0E59F2; color: #fff; }
+.admin-btn--primary { background: #0E59F2; color: #fff; text-align: center; }
 .admin-btn--secondary { background: #e8eefc; color: #0E59F2; }
 .admin-btn--danger { background: #fee2e2; color: #b91c1c; }
 .admin-btn--ghost { background: transparent; color: #475569; border: 1px solid #dbe3ef; }
